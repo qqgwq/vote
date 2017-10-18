@@ -1,0 +1,3 @@
+$("#topic-like-<%= @topic.id %>").html("<%= j render partial: 'topics/like', locals: {topic: @topic} %>");
+$("#count").text("<%= @topic.likes.count %>")
+$("#score").text("<%= current_user.ranks.score(current_user.id) %>")

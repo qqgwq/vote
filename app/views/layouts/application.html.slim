@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title
+      = Vote
+
+    = stylesheet_link_tag    'application', media: 'all', "data-turbolinks-track" => 'true'
+    = javascript_include_tag 'application', "data-turbolinks-track" => 'true'
+    = csrf_meta_tags 
+
+  body
+    .nav.navbar-head.navbar.navabr-fixed-top
+      .container
+        a.navbar-brand href=root_url 首页
+        ul.nav.navbar-nav.navbar-right
+          -if login?
+            li = link_to "登出", logout_path, method: :delete
+            li = link_to "创建文章", new_topic_path
+          - else
+            li = link_to "创建文章", new_topic_path
+    = yield

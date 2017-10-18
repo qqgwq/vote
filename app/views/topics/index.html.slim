@@ -1,0 +1,28 @@
+.row
+  .col-md-9
+    .panel-body
+      .h1
+        = image_tag "heading.png"
+        .p
+          = link_to "注册", signup_path, class: "btn btn-info" 
+          = link_to "点击登录", signin_path, class: "btn btn-primary"
+
+  .col-md-3#phb
+    .panel.panel-default
+      .panel-heading
+        p 排行榜
+      .panel-body
+        table.table.table-striped
+          thead
+            tr
+              th 排名
+              th 积分
+              th 用户
+          tbody
+            - @users.each do |user|
+              tr
+                td = user.ranks.revrank("#{user.id}")+ 1
+                td.score = user.ranks.score("#{user.id}").to_i
+                td = user.name
+
+          

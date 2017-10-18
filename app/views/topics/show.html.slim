@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-md-9
+      .panel.panel-default
+        .panel-heading
+          p 文章
+        .panel-body
+          .media-left
+            = image_tag @topic.user.image.url, class: "img-rounded", width: 68, height: 68
+          .media-body
+            .media-heading
+            p 标题:
+            = @topic.title
+            .media-heading
+            p 内容:
+            = @topic.content
+            .media-heading#count
+              p 点赞数:
+              = @topic.likes.count
+        div id="topic-like-#{@topic.id}"
+          = render partial: "topics/like", locals: {topic: @topic}
+

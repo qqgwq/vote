@@ -1,0 +1,6 @@
+- if topic.liked_topic?(current_user)
+  = link_to topic_like_path(topic), method: :delete, remote: true do
+    = image_tag "dz1.png", width: 100
+- else
+  = link_to topic_like_path(topic), method: :post, remote: true do
+    = image_tag "dz.png", width: 100
