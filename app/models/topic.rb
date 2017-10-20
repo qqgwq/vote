@@ -8,7 +8,7 @@ class Topic < ApplicationRecord
   #定时清理set中的用户
   def self.vote_user
     Topic.all.each do |topic|
-      topic.vote.members.clear
+      topic.vote.clear
     end
   end
 

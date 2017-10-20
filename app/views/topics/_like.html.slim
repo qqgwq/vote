@@ -1,5 +1,5 @@
 - if current_user
-  - if @topic.vote.member?(current_user.id)
+  - if topic.vote.member?(current_user.id)
     = image_tag "dz1.png", width: 200
   - else
     = link_to like_topic_path(topic), method: :post, remote: true do

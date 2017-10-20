@@ -11,15 +11,15 @@
       li.list-group-item
         span= @topic.name
         span.topic-rank= "排名: #{@topic.rankes}"
-      li.list-group-item.school
+      .school
         = @topic.school
     .like-count
       = "#{@topic.vote_score} 赞"
-    div.topics id="topic-like-#{@topic.id}"
+    .topics
       = render partial: "topics/like", locals: {topic: @topic}
-      .jizhan
-        a.btn href = root_url 转发帮TA集赞
+    .jizhan
+      a.btn href = root_url 转发帮TA集赞
 
 #content
   .content-title= @topic.title
-  p= @topic.content
+  #p= raw @topic.content
