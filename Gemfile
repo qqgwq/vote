@@ -37,7 +37,12 @@ gem 'haml'
 gem 'redis-objects'
 gem 'carrierwave'
 gem 'mini_magick'
-
+gem 'faker'
+gem 'simditor', github: 'Scott1743/simditor', branch: 'universal_version'
+#定时
+gem 'whenever', :require => false
+gem 'sidekiq'
+gem 'redis'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,28 +1,25 @@
-.row
-  .col-md-9
-    .panel-body
-      .h1
-        = image_tag "heading.png"
-        .p
-          = link_to "注册", signup_path, class: "btn btn-info" 
-          = link_to "点击登录", signin_path, class: "btn btn-primary"
+.section
+  .hdgz
+    .p 活动规则
+  = image_tag "bg_1.png", width:1350, height: 350
+.section
+  = image_tag "heading.png", width:1350
 
-  .col-md-3#phb
-    .panel.panel-default
-      .panel-heading
-        p 排行榜
-      .panel-body
-        table.table.table-striped
-          thead
-            tr
-              th 排名
-              th 积分
-              th 用户
-          tbody
-            - @users.each do |user|
-              tr
-                td = user.ranks.revrank("#{user.id}")+ 1
-                td.score = user.ranks.score("#{user.id}").to_i
-                td = user.name
-
-          
+= form_tag(topics_url, method: :get, class: 'form') do
+  .form-group
+    = text_field_tag :search, params[:search], placeholder: "请你输入你要查找的姓名和编号", class: "input" 
+    = image_submit_tag("serch.png", class: "search")  
+    
+    .all-title
+      h5= link_to "全部作品", all_topics_path
+  .top50
+    .p50 前50名
+    .h6 （将进入专家评审）
+    = image_tag "TOP50.png", height: 50
+  - @topics.each_with_index do |topic, index|
+      li.list-group-item
+        .revrank= "0#{topic.rankes}"
+        .id= "0#{topic.id}"
+        .name= topic.name
+        = image_tag "bg_50.png", width: 430;
+        .title= link_to "《#{topic.title}》", topic_path(topic)

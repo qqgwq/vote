@@ -12,6 +12,8 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require simditor
+//= require simditor/init
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .

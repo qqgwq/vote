@@ -1,22 +1,25 @@
-.container
-  .row
-    .col-md-9
-      .panel.panel-default
-        .panel-heading
-          p 文章
-        .panel-body
-          .media-left
-            = image_tag @topic.user.image.url, class: "img-rounded", width: 68, height: 68
-          .media-body
-            .media-heading
-            p 标题:
-            = @topic.title
-            .media-heading
-            p 内容:
-            = @topic.content
-            .media-heading#count
-              p 点赞数:
-              = @topic.likes.count
-        div id="topic-like-#{@topic.id}"
-          = render partial: "topics/like", locals: {topic: @topic}
+.bg
+  = image_tag "bg_xq.png", width: 1350, height: 360
+  li.list-group-item#NO
+    = "NO.00#{@topic.id}"
+  .media-left
+    .user_image
+      = image_tag @topic.avatar, class: "img-rounded", width: 140, height: 140
 
+  .media-body
+    ul.list-group
+      li.list-group-item
+        span= @topic.name
+        span.topic-rank= "排名: #{@topic.rankes}"
+      li.list-group-item.school
+        = @topic.school
+    .like-count
+      = "#{@topic.vote_score} 赞"
+    div.topics id="topic-like-#{@topic.id}"
+      = render partial: "topics/like", locals: {topic: @topic}
+      .jizhan
+        a.btn href = root_url 转发帮TA集赞
+
+#content
+  .content-title= @topic.title
+  p= @topic.content

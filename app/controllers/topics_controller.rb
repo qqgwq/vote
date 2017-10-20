@@ -6,12 +6,11 @@ class TopicsController < ApplicationController
 
   def index
     #binding.pry
-    @topics = Topic.all
-    @users = User.order("field(id, #{User.ranks.members.join(',')})")
+    @topics = Topic.order("field(id, #{Topic.ranks.members.reverse.join(',')})").limit(50)
   end
 
   def create
-    @topic = current_user.topics.new(topic_params)
+    @topic = Topic.new(topic_params)
     if @topic.save
       redirect_to @topic
     else
@@ -21,7 +20,33 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    if current_user
+      if @topic.vote.member?(current_user.id) #判断用户是否已给文章投票
+        @topic.ranks.incr(@topic.id)&.next 
+        @topic.vote << current_user.id
+      end
+    end
   end
+
+  def all
+    @topics = Topic.all
+  end
+
+  def like
+    @topic = Topic.find(params[:id])
+    @topic.ranks.incr(@topic.id, 1)
+      respond_to do |format|
+        format.js
+      end
+  end
+
+  # def unlike
+  #   @topic = Topic.find(params[:id])
+  #   @topic.ranks.decr(@topic.id, 1)
+  #     respond_to do |format|
+  #       format.js
+  #     end
+  # end
 
   private
 

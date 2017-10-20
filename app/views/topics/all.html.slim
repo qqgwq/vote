@@ -1,0 +1,18 @@
+.bg-img
+  = image_tag "bg_1.png", width: "1350", height: "400"
+
+  .all_ranks
+    table#table
+      tbody
+        tr
+          th 编号 |
+          th 姓名 |
+          th 点赞数 |
+          th 作品
+        - @topics.each do |topic|
+          tr
+            td= "00#{topic.id}"
+            td= topic.name
+            td= topic.likes.count
+            td= "《#{topic.title}》"
+

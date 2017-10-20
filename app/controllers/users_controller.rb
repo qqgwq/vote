@@ -4,12 +4,13 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.search(params[:search]).order(created_at: :desc)
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
+      login_as @user
       redirect_to @user
     else
       render 'new'
