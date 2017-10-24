@@ -56,7 +56,7 @@ javascript:
           dataType: "json",
           url: "/topics",
           data: {search: this.search},               // 前端传入的参数
-          success: function(data){                   // 回调返回的数据，赋值给vue中的topics
+          success: function(data){                   // 请求成功从服务器返回回调函数，赋值给vue中的topics
             gwq.topics = data
           }
         })
