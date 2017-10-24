@@ -5,19 +5,16 @@ class TopicsController < ApplicationController
   end
 
   def index
-    #binding.pry
-    @topics = Topic.order("field(id, #{Topic.ranks.members.reverse.join(',')})").limit(50)
+    #用户根据id排名
+    @topics = Topic.search(params[:search]).order("field(id, #{Topic.ranks.members.reverse.join(',')})").limit(50)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show
     @topic = Topic.find(params[:id])
-    if current_user
-      #binding.pry
-      if @topic.vote.member?(current_user.id) #判断用户是否已给文章投票
-        @topic.ranks.incr(@topic.id)&.next 
-        @topic.vote << current_user.id
-      end
-    end
   end
 
   def all
@@ -26,7 +23,8 @@ class TopicsController < ApplicationController
 
   def like
     @topic = Topic.find(params[:id])
-    @topic.ranks.incr(@topic.id, 1)
+    @topic.ranks.incr(@topic.id, 1)#当前用户点赞加1
+    @topic.vote << current_user.id #把当前用户赋值给集合，判断用户是否点赞
       respond_to do |format|
         format.js
       end

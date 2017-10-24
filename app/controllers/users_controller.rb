@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.search(params[:search]).order(created_at: :desc)
+    @users = User.all
   end
 
   def create

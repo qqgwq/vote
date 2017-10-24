@@ -49,12 +49,12 @@ body{
 #NO{
   background: none;
   border: none;
-  padding-left: 80px;
   position: relative;
   top: 20px;
   font-weight: bold;
   color: #FFF;
   font-size: 12px;
+  margin: 0 64px
 }
 .media-body{
   padding-left: 107px;
@@ -65,7 +65,8 @@ body{
       color: #FFF;
       font-size: 2rem;
       float: left;
-      padding-top: 3px;
+      padding-top: 20px;
+
     }
     .topic-rank{
       font-size: 14px;
@@ -82,7 +83,7 @@ body{
   .like-count{
     position: relative;
     top: 40px;
-    left: -129px;
+    left: -22%;
     font-size: 3em;
     margin-top: -17px;
     color: #FF4500;
@@ -145,64 +146,48 @@ body{
     top: 12px;
     left: -34px;
   }
-  .all-title{
-    float: right;
-    position: relative;
-    right: 480px;
-    top: 8px;
-    width: 98px;
-    border-radius: 18px;
-    border: 1px solid red;
-    background: #990000;
-    color: #FFF;
-  }
-  .top50{
-    margin-top: -50px;
-  .p50{
+}
+
+.rank{
+    text-align: center;
+    margin-top: -100px;
+    .p50{
     position: relative;
     top: 64px;
-    left: 50px;
+    left: 3px;
     font-weight: bold;
     color: #FFF;
     font-size: 2rem;
     }
   .h6{
     position: relative;
-    left: 108px;
+    left: 153px;
     top: 36px;
     }
+  table{
+    margin-left: 8%;
+    margin-top: 1%;
+    .id{
+      position: relative;
+      left: 24%;
   }
-  .list-group-item{
-    background: none;
-    border: none;
-    margin-top: -55px;
-    height: 100px;
+    .rankes{
+      position: relative;
+      left: 28%;
+    }
+    .name{
+      position: relative;
+      left: 30%;
+    }
+    .title{
+      position: relative;
+      left: 78%;
+    }
+    img{
+      margin-bottom: 5px;
+    }
   }
-}
-.revrank{
-  position: relative;
-  left: -196px;
-  top: 68px;
-  font-size: 1em;
-  color: #FFF;
-}
-.id{
-  position: relative;
-  left: -148px;
-  top: 48px;
-  font-size: 1em;
-}
-.name{
-  position: relative;
-  right: 104px;
-  top: 28px;
-  font-size: 1em;
-}
-.title{
-  position: relative;
-  left: 148px;
-  top: -27px;
-  font-size: 1em;
+  
 }
 .users{
   margin-top: 22px;
@@ -250,4 +235,34 @@ body{
       }
     }
   }
+}
+.all-title{
+    position: relative;
+    left: 63%;
+    top: -34px;
+    width: 98px;
+    border-radius: 18px;
+    border: 1px solid red;
+    background: #990000;
+    color: #FFF;
+  }
+
+#search{
+  background-image: url("serch.png");
+  background-repeat: no-repeat;
+  background-size: 29px;
+  border-radius: 12px;
+  border: 1px solid red;
+  width: 24%;
+  height: 31px;
+  padding-left: 33px;
+  margin-top: 5%;
+}
+.list-group-item{
+  background: none;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  width: 23%;
+  margin-top: -2%;
+  background: #FFF;
 }

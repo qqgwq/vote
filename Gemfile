@@ -39,6 +39,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'faker'
 gem 'simditor', github: 'Scott1743/simditor', branch: 'universal_version'
+gem 'vuejs-rails'
 #定时
 gem 'whenever', :require => false
 gem 'sidekiq'

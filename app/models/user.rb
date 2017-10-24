@@ -6,14 +6,6 @@ class User < ApplicationRecord
   #has_many :likes, through: :likes, source: :topic
   validates :name, :password, presence: true
 
-   def self.search(search)
-    if search
-      User.where("name LIke? OR id LIKE?", "%#{search}%", "%#{search}%")
-    else
-      User.all
-    end
-  end
-
   def admin?
     self.role == 'admin'
   end

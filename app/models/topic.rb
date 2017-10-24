@@ -22,6 +22,14 @@ class Topic < ApplicationRecord
     ranks.score(self.id).to_i
   end
 
+  def self.search(search)
+    if search
+      Topic.where("name like? OR id like?", "%#{search}%", "%#{search}%")
+    else
+      Topic.all
+    end
+  end
+
   private
 
   #回调创建文章之前初始化redis的值不能为空

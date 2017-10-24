@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require vue
 //= require simditor
 //= require simditor/init
 //= require bootstrap-sprockets

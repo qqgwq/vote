@@ -5,21 +5,61 @@
 .section
   = image_tag "heading.png", width:1350
 
-= form_tag(topics_url, method: :get, class: 'form') do
-  .form-group
-    = text_field_tag :search, params[:search], placeholder: "请你输入你要查找的姓名和编号", class: "input" 
-    = image_submit_tag("serch.png", class: "search")  
-    
-    .all-title
-      h5= link_to "全部作品", all_topics_path
+= form_tag topics_url, method: :get, class: 'form' do
+  input type="search" name="search" id="search" placeholder= "请你输入你要查找的姓名和编号" v-model="search"
+  .all-title
+    h5= link_to "全部作品", all_topics_path
+  ul.list-group
+    li.list-group-item v-for="topic in topics"
+      a :href="'topics/' + topic.id" style = "width: 100%;"
+        .row
+          .col-4
+            .pull-left
+              | No.{{topic.id}}
+          .col-8
+            .pull-right
+              | {{topic.name}}
+.rank
   .top50
     .p50 前50名
     .h6 （将进入专家评审）
-    = image_tag "TOP50.png", height: 50
-  - @topics.each_with_index do |topic, index|
-      li.list-group-item
-        .revrank= "0#{topic.rankes}"
-        .id= "0#{topic.id}"
-        .name= topic.name
-        = image_tag "bg_50.png", width: 430;
-        .title= link_to "《#{topic.title}》", topic_path(topic)
+    = image_tag "TOP50.png", height: 50, width: 737
+  table
+    tbody
+      - @topics.each_with_index do |topic, index|
+        tr
+          th.id= "0#{topic.id}"
+          td.rankes= "0#{topic.rankes}"
+          td.name= topic.name
+          td.title= link_to "《#{topic.title}》", topic_path(topic)
+          td= image_tag "bg_50.png", width: 737, height: 37
+
+
+javascript:
+  gwq = new Vue({
+    el: ".form",
+    data: {
+      topics: [],                                  // 服务器返回的数据
+      search: null                                 // 搜索框输入的值
+    },
+    watch: {                                       // 监听搜索框值的变化
+      search: function(){
+        this.gby()
+      }
+    },
+    methods: {
+      gby: function(){
+        $(".section").hide();
+        $(".rank").hide();
+        $.ajax({
+          type: "GET",
+          dataType: "json",
+          url: "/topics",
+          data: {search: this.search},               // 前端传入的参数
+          success: function(data){                   // 回调返回的数据，赋值给vue中的topics
+            gwq.topics = data
+          }
+        })
+      }
+    }
+  })
